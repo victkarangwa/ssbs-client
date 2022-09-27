@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import socketIOClient from "socket.io-client";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'antd/dist/antd.css';
+import ClockComponent from "./components/Clock";
+import "react-clock/dist/Clock.css";
+// import sound from "sound-play"
 
 function App() {
+  const socket = socketIOClient("http://localhost:5000");
+
+  useEffect(() => {
+    socket.on("bell", (data) => {
+      const player = new Audio(data?.foundPeriods?.sound);
+      player.play();
+    });
+  }, [socket]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className=''>
+        <h1 style={{ textAlign: "center " }}>Smart School Bell System</h1>
+        <ClockComponent />
+      </div>
     </div>
   );
 }

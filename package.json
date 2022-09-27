@@ -3,19 +3,51 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@electron/remote": "^2.0.8",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "antd": "^4.23.2",
+    "bootstrap": "^5.2.1",
+    "concurrently": "^7.4.0",
+    "cross-env": "^7.0.3",
+    "crypto-browserify": "^3.12.0",
+    "electron-is-dev": "^2.0.0",
     "react": "^18.2.0",
+    "react-clock": "^3.1.0",
     "react-dom": "^18.2.0",
+    "react-live-clock": "^6.0.6",
     "react-scripts": "5.0.1",
+    "socket.io-client": "^4.5.2",
+    "sound-play": "^1.1.0",
+    "util": "^0.12.4",
+    "wait-on": "^6.0.1",
     "web-vitals": "^2.1.4"
   },
+  "main": "public/main.js",
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
+    "electron:start": "wait-on tcp:3000 && electron ."
+  },
+  "build": {
+    "extends": null,
+    "appId": "com.ssbs.vickyvictor",
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +66,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "browser": {
+    "child_process": null
+  },
+  "devDependencies": {
+    "electron-builder": "^23.3.3",
+    "electron": "^21.0.0"
   }
 }
