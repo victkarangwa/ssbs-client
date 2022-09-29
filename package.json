@@ -1,6 +1,6 @@
 {
-  "name": "react-electron",
-  "version": "0.1.0",
+  "name": "ssbs-client",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -21,6 +21,7 @@
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.5.2",
     "sound-play": "^1.1.0",
+    "speak-tts": "^2.0.8",
     "util": "^0.12.4",
     "wait-on": "^6.0.1",
     "web-vitals": "^2.1.4"
@@ -71,7 +72,7 @@
     "child_process": null
   },
   "devDependencies": {
-    "electron-builder": "^23.3.3",
-    "electron": "^21.0.0"
+    "electron": "^21.0.0",
+    "electron-builder": "^23.3.3"
   }
 }
